@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Notes App with localStorage</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    input { padding: 8px; width: 250px; }
+    button { padding: 8px 12px; margin-left: 10px; }
+    .note {
+      background: #f0f0f0;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      position: relative;
+    }
+    .note .delete-btn {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      background: red;
+      color: white;
+      border: none;
+      padding: 4px 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Persistent Notes App</h2>
+  <input type="text" id="noteInput" placeholder="Type your note..." />
+  <button onclick="addNote()">Add Note</button>
+
+  <div id="noteContainer"></div>
+
+  <script>
+
+    //loading  want to check there is already existing anything
+
+    //adding into localstorage also want to check that already existig anything
+    
+    const input = document.getElementById("noteInput");//getting the input
+    const container = document.getElementById("noteContainer");//creating the container to store
+
+
+    // Load notes on page load
+    window.onload = () => {
+      const notes = getNotesFromStorage();
+      notes.forEach(text => createNoteElement(text));
+    };
+
+    // Add new note
+    function addNote() {
+      const text = input.value.trim();
+      if (text === "") {
+        alert("Please type something.");
+        return;
+      }
+
+      // Save to localStorage
+      const notes = getNotesFromStorage();
+      notes.push(text);
+      localStorage.setItem("notes", JSON.stringify(notes));
+
+      // Add to page
+      createNoteElement(text);
+      input.value = "";
+    }
+
+    // Delete a note
+    function deleteNote(buttonElement, text) {
+      // Remove from DOM
+      const noteToDelete = buttonElement.parentElement;
+      noteToDelete.remove();
+
+      // Remove from storage
+      let notes = getNotesFromStorage();
+      notes = notes.filter(note => note !== text); // keep only other notes
+      localStorage.setItem("notes", JSON.stringify(notes));
+    }
+
+    // Create and add a note element to the page
+    function createNoteElement(text) {
+      const note = document.createElement("div");
+      note.classList.add("note");
+      note.innerHTML = `
+        <span>${text}</span>
+        <button class="delete-btn" onclick="deleteNote(this, \`${text}\`)">Delete</button>
+      `;
+      container.appendChild(note);
+    }
+
+    // Get notes array from localStorage
+    function getNotesFromStorage() {
+      const stored = localStorage.getItem("notes");
+      return stored ? JSON.parse(stored) : [];
+    }
+  </script>
+
+</body>
+</html>

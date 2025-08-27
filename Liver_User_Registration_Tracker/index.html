@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Live User Registration Tracker</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #e0f7fa, #c8e6c9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      background: #ffffffcc;
+      backdrop-filter: blur(8px);
+      padding: 30px 40px;
+      border-radius: 20px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+      max-width: 450px;
+      width: 100%;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .container:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      color: #ff6f61;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    input {
+      padding: 12px;
+      margin: 10px 0;
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+      outline: none;
+      transition: border 0.3s ease;
+    }
+
+    input:focus {
+      border: 2px solid #ff6f61;
+    }
+
+    button {
+      padding: 10px 18px;
+      margin: 10px 5px 0 5px;
+      border-radius: 12px;
+      border: none;
+      background: #ff6f61;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background: #ff4b3e;
+      transform: scale(1.05);
+    }
+
+    .output, .clock {
+      margin-top: 20px;
+      background: #f0f4ff;
+      padding: 15px;
+      border-radius: 15px;
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+      text-align: left;
+    }
+
+    .output ul {
+      padding-left: 20px;
+    }
+
+    .error {
+      color: #d32f2f;
+      font-weight: 600;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 20px;
+      }
+      input, button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Live User Registration Tracker</h2>
+
+    <input type="text" id="nameInput" placeholder="Enter your name" />
+    <input type="email" id="emailInput" placeholder="Enter your email" />
+    
+    <button onclick="registerUser()">Register</button>
+    <button onclick="clearUsers()">Clear All Users</button>
+
+    <div class="clock" id="liveClock"></div>
+    <div class="output" id="userList"></div>
+  </div>
+
+  <script>
+    const nameInput = document.getElementById("nameInput");
+    const emailInput = document.getElementById("emailInput");
+    const userList = document.getElementById("userList");
+    const liveClock = document.getElementById("liveClock");
+
+    function updateClock() {
+      const now = new Date();
+      liveClock.innerHTML = "🕒 Current Time: " + now.toLocaleTimeString();
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    showUsers();
+
+    function registerUser() {
+      try {
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+
+        if (!name || !email) {
+          throw new Error("Both name and email are required.");
+        }
+
+        const newUser = { name, email, time: new Date().toLocaleString() };
+        let users = JSON.parse(localStorage.getItem("users") || "[]");
+        users.push(newUser);
+        localStorage.setItem("users", JSON.stringify(users));
+
+        nameInput.value = "";
+        emailInput.value = "";
+        showUsers();
+      } catch (error) {
+        userList.innerHTML = "<p class='error'>" + error.message + "</p>";
+      }
+    }
+
+    function showUsers() {
+      const users = JSON.parse(localStorage.getItem("users") || "[]");
+      if (users.length === 0) {
+        userList.innerHTML = "<p>No users registered.</p>";
+        return;
+      }
+      let html = "<h3>Registered Users</h3><ul>";
+      users.forEach(user => {
+        html += `<li>👤 <strong>${user.name}</strong> (${user.email}) - 🕒 ${user.time}</li>`;
+      });
+      html += "</ul>";
+      userList.innerHTML = html;
+    }
+
+    function clearUsers() {
+      localStorage.removeItem("users");
+      showUsers();
+    }
+  </script>
+</body>
+</html>

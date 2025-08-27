@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="icon" type="image/jpeg" href="images/cart.png">
+  <title>DTC - Tap Into Your Dream</title>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+ <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <div class="container-fluid">
+    <!-- Logo -->
+    <a class="navbar-brand me-3" href="/"><i class="fas fa-shopping-cart"></i> Dream-to-Cart</a>
+
+    <!-- Toggler for small screens (hamburger icon) -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <div class="d-flex flex-wrap align-items-center w-100 justify-content-end mt-2 mt-lg-0">
+
+        <!-- Search Bar -->
+        <div class="d-flex align-items-center me-3 flex-grow-1" style="min-width: 250px;">
+          <input class="form-control me-2" type="search" placeholder="Search your dream..." id="dreamInput">
+          <button class="btn btn-outline-light" onclick="searchDream()"><i class="fas fa-search"></i></button>
+        </div>
+
+        <!-- Wishlist Button -->
+        <button class="btn btn-outline-light me-2" onclick="viewWishlist()">
+          <i class="fas fa-shopping-cart"></i>
+        </button>
+
+              <!-- Login Button (opens modal) -->
+        <button class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#loginModal" id="loginIconBtn">
+          <i class="fas fa-user"></i>
+        </button>
+
+        <!-- Register Button (opens modal) -->
+        <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#registerModal" id="registerIconBtn">
+          <i class="fas fa-user-plus"></i>
+        </button>
+
+
+
+        <!-- Logout & Theme Toggle -->
+      
+        <button class="btn btn-outline-light" onclick="toggleTheme()" id="themeBtn">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+
+  <div class="container">
+    <!-- <div id="registerSection" class="card p-4 mb-3" style="display:none;">
+      <h3 class="text-center">Register</h3>
+      <input type="text" class="form-control mb-3" id="registerUsername" placeholder="New Username">
+      <input type="password" class="form-control mb-3" id="registerPassword" placeholder="New Password">
+      <button class="btn btn-primary w-100" onclick="register()" id="submitbtn">Submit</button>
+    </div> -->
+
+    <div id="dreamSearch" class="mb-3" style="display:none;"></div>
+    <br><br><div id="result"></div>
+    <div id="wishlistDisplay" class="wishlist-container"></div>
+  </div>
+  <script src="js/script.js"></script>
+  <!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModalLabel">Login</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control mb-3" id="loginUsername" placeholder="Username">
+        <input type="password" class="form-control mb-3" id="loginPassword" placeholder="Password">
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary w-100" onclick="login()">Login</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Register Modal -->
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="registerModalLabel">Register</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control mb-3" id="registerUsername" placeholder="New Username">
+        <input type="password" class="form-control mb-3" id="registerPassword" placeholder="New Password">
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary w-100" onclick="register()">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Mode</title>
+    <style>
+        .dark-mode
+        {
+            background-color: black;
+            color:azure;
+        }
+    </style>
+</head>
+<body>
+    <button type="button" id="mode" onclick="dark_mode()">Light</button>
+</body>
+<script>
+let state=false;
+function dark_mode()
+{
+    document.body.classList.toggle("dark-mode");
+    state=!state;
+    document.getElementById("mode").textContent=state?'dark':'light';
+}
+</script>
+</html>

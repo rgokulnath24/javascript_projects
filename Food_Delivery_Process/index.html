@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍕 Food Delivery</title>
+    <style>
+        /* Google Font */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #ffecd2, #fcb69f);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        h1 {
+            color: #ff4d6d;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 18px;
+            background: #ff4d6d;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        button:hover {
+            background: #ff6f91;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+        }
+
+        #output {
+            margin-top: 30px;
+            background: #fff3f3;
+            padding: 20px;
+            border-radius: 15px;
+            min-height: 180px;
+            width: 300px;
+            max-width: 90%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            overflow-y: auto;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        /* Scrollbar styling */
+        #output::-webkit-scrollbar {
+            width: 8px;
+        }
+        #output::-webkit-scrollbar-thumb {
+            background: #ff4d6d;
+            border-radius: 4px;
+        }
+
+        #output::-webkit-scrollbar-track {
+            background: #ffe3e3;
+        }
+    </style>
+</head>
+<body>
+    <h1>🍔 Food Delivery App</h1>
+    <button type="button" onclick="order_placed()">Place Order</button>
+    <div id="output">Click "Place Order" to start the process</div>
+
+    <script>
+        const output = document.getElementById("output");
+
+        function log(message) {
+            output.innerHTML += message + "<br>";
+            output.scrollTop = output.scrollHeight; // auto scroll
+        }
+
+        function clearoutput() {
+            output.innerHTML = "Starting Food Delivery Process..<br>";
+        }
+
+        function validateuserId(id) {
+            return new Promise((resolve, reject) => 
+                setTimeout(() => {
+                    if (id === 101) {
+                        log("✅ User Validated: Gokul");
+                        resolve("Gokul");
+                    } else {
+                        reject("❌ User not found");
+                    }
+                }, 1000)
+            );
+        }
+
+        function checkRestaurant(item) {
+            return new Promise((resolve, reject) =>
+                setTimeout(() => {
+                    const avail_items = ["parotta", "pizza", "burger"];
+                    const check = avail_items.includes(item);
+                    if (check) {
+                        log(`🍕 ${item} is available in restaurant`);
+                        resolve(item);
+                    } else {
+                        reject(`❌ ${item} is not available`);
+                    }
+                }, 1000)
+            );
+        }
+
+        function orderconfirmation(item) {
+            return new Promise((resolve) =>
+                setTimeout(() => {
+                    log(`✅ Order Confirmed for: ${item}`);
+                    resolve(Math.floor(Math.random() * 1000));
+                }, 1000)
+            );
+        }
+
+        function trackorder(orderid) {
+            return new Promise((resolve) =>
+                setTimeout(() => {
+                    log("🚚 Order is on the way...");
+                    setTimeout(() => {
+                        log("🏠 Order delivered successfully!");
+                        resolve(`🎉 Delivered! PIZ_${orderid}`);
+                    }, 1500);
+                }, 1500)
+            );
+        }
+
+        function order_placed() {
+            clearoutput();
+            const loginid = 101;
+            const item = "pizza";
+            validateuserId(loginid)
+                .then(() => checkRestaurant(item))
+                .then(() => orderconfirmation(item))
+                .then((orderid) => trackorder(orderid))
+                .then((finalmsg) => log(finalmsg))
+                .catch(error => log(error));
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+ body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f1f3f6;
+      color: #212529;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .navbar {
+      background-color: #bb6262;
+    }
+
+    .navbar-brand, .nav-link, .form-control::placeholder {
+      color: #fff !important;
+    }
+
+    .navbar .btn {
+      background-color: #f6f0f0;
+      color: #bb6262;
+      border-radius: 20px;
+    }
+
+    .container {
+      margin-top: 30px;
+    }
+
+    .card {
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .wishlist-btn {
+      background-color: crimson;
+      color: white;
+      /* background:linear-gradient(red,blue); */
+      border: none;
+      padding:8px;
+      border-radius: 15px;
+    }
+
+    .product {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+    #price
+    {
+      color:#d36060;
+      font-weight:bold;
+      font-size:21px;
+    }
+    .product:hover {
+      transform: translateY(-5px);
+    }
+
+    .wishlist-container ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .wishlist-container li {
+      margin-bottom: 10px;
+    }
+
+    .dark-mode {
+      background-color: #121212;
+      color: #eee;
+    }
+    .dark-mode .product{
+      color: #121212;
+      /* color: #eee; */
+    }
+
+    .dark-mode .navbar {
+      background-color: #bc6565;
+      border-bottom:blue;
+    }
+    .dark-mode .heading
+    {
+      font-weight:bold;
+    }
+
+    .dark-mode .card, .dark-mode .product {
+      background-color: #1e1e1e;
+    }
+    .heading
+    {
+      margin-bottom:20px;
+      font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      color:#bb6262;
+      letter-spacing:1px;
+    }
+    #title
+    {
+      color:#d36565;
+      font-weight:bold;
+      font-family:fantasy;
+    }
+
+    input.form-control::placeholder {
+      color: #666 !important;
+      opacity: 1;
+    }

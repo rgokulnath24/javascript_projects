@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Shopping Cart with Local Storage</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 500px;
+      margin: auto;
+      background-color: #f5f5f5;
+    }
+    h2 {
+      text-align: center;
+    }
+    input[type="text"] {
+      width: 70%;
+      padding: 8px;
+      margin-right: 10px;
+    }
+    button {
+      padding: 8px 12px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    li {
+      background: #ffffff;
+      padding: 8px;
+      margin: 5px 0;
+      display: flex;
+      justify-content: space-between;
+      border-radius: 4px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .remove-btn {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🛒 Shopping Cart</h2>
+
+  <input type="text" id="itemInput" placeholder="Enter item name">
+  <button onclick="addItem()">Add Item</button>
+
+  <h3>Cart Items:</h3>
+  <ul id="cartList"></ul>
+
+  <script>
+    let cart = [];
+
+    // Load cart from localStorage when page loads
+    window.onload = function () {
+      const savedCart = localStorage.getItem("shoppingCart");
+      if (savedCart) {
+        cart = JSON.parse(savedCart);
+        updateCartDisplay();
+      }
+    };
+
+    function addItem() {
+      const input = document.getElementById("itemInput");
+      const item = input.value.trim();
+      if (item === "") return alert("Please enter an item.");
+
+      cart.push(item);
+      input.value = "";
+      saveCart();
+      updateCartDisplay();
+    }
+
+    function removeItem(index) {
+      cart.splice(index, 1);
+      saveCart();
+      updateCartDisplay();
+    }
+
+    function updateCartDisplay() {
+      const cartList = document.getElementById("cartList");
+      cartList.innerHTML = "";
+
+      cart.forEach((item, index) => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          ${item}
+          <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+        `;
+        cartList.appendChild(li);
+      });
+    }
+
+    function saveCart() {
+      localStorage.setItem("shoppingCart", JSON.stringify(cart));
+    }
+  </script>
+
+</body>
+</html>

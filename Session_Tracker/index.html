@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Login Tracker</title>
+  <style>
+    /* Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      background: #ffffffcc; /* Slight transparency for soft vibe */
+      backdrop-filter: blur(8px);
+      padding: 30px 40px;
+      border-radius: 20px;
+      box-shadow: 0 15px 25px rgba(0,0,0,0.15);
+      max-width: 450px;
+      width: 100%;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .container:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 35px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      color: #ff6f61;
+      margin-bottom: 25px;
+      font-weight: 600;
+    }
+
+    .label {
+      display: block;
+      text-align: left;
+      font-weight: 600;
+      margin-top: 15px;
+      color: #555;
+      font-size: 14px;
+    }
+
+    span {
+      display: block;
+      margin-top: 5px;
+      background: #f0f4ff;
+      padding: 10px 15px;
+      border-radius: 12px;
+      font-weight: 500;
+      color: #1a1a2e;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    /* subtle emoji size */
+    .label::before {
+      margin-right: 6px;
+    }
+
+    /* For smaller screens */
+    @media (max-width: 480px) {
+      .container {
+        padding: 25px 20px;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+
+      span {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🛡️ User Session Tracker</h2>
+    
+    <div class="label">👤 Username:</div>
+    <span id="user_name">Loading...</span>
+
+    <div class="label">🕒 Current Time:</div>
+    <span id="current_time">--:--:--</span>
+
+    <div class="label">📥 Login Time:</div>
+    <span id="login_time">--</span>
+
+    <div class="label">📈 Session Duration:</div>
+    <span id="session_duration">--</span>
+
+    <div class="label">📌 Last Active Timestamp (ms):</div>
+    <span id="last_active">--</span>
+  </div>
+
+  <script>
+    const username = "Gokul"; 
+    const user_name = document.getElementById("user_name");
+    const current_time = document.getElementById("current_time");
+    const login_time = document.getElementById("login_time");
+    const session_duration = document.getElementById("session_duration");
+    const last_active = document.getElementById("last_active");
+
+    const loginTimestamp = Date.now(); 
+    user_name.textContent = username;
+    login_time.textContent = new Date(loginTimestamp).toLocaleString();
+    last_active.textContent = loginTimestamp;
+
+    function updateClock() {
+      const now = new Date();
+      current_time.textContent = now.toLocaleTimeString();
+
+      const durationMs = Date.now() - loginTimestamp;
+      const seconds = Math.floor((durationMs / 1000) % 60);
+      const minutes = Math.floor((durationMs / 1000 / 60) % 60);
+      const hours = Math.floor((durationMs / 1000 / 60 / 60));
+
+      session_duration.textContent = `${hours}h ${minutes}m ${seconds}s`;
+      last_active.textContent = Date.now();
+    }
+
+    updateClock();
+    setInterval(updateClock, 1000);
+  </script>
+</body>
+</html>

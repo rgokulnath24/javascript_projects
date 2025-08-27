@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Username Generator - String Methods</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    input { padding: 6px; width: 250px; margin-right: 10px; }
+    button { padding: 6px 12px; }
+    .output-box { margin-top: 20px; padding: 10px; background: #f3f3f3; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <h2>Username Generator</h2>
+  <p>Enter your full name:</p>
+  <input type="text" id="fullname" placeholder="e.g. Gokul Nath" />
+  <button onclick="generateUsername()">Generate</button>
+
+  <div class="output-box" id="output"></div>
+
+  <script>
+    function generateUsername() {
+      let name = document.getElementById("fullname").value;
+      let output = document.getElementById("output");
+
+      // Clean input
+      let trimmed = name.trim(); // remove leading/trailing spaces
+      let lowercased = trimmed.toLowerCase(); // lowercase for consistency
+
+      // Split name into parts
+      let parts = lowercased.split(" "); // ["gokul", "nath"]
+      let firstName = parts[0] || "";
+      let lastName = parts[1] || "";
+
+      // Create username
+      let initials = firstName.charAt(0) + (lastName.charAt(0) || "x");
+      let username = firstName.slice(0, 3) + lastName.slice(0, 3) + initials;
+
+      // Capitalize first letter
+      let displayName = firstName.charAt(0).toUpperCase() + firstName.slice(1);
+
+      // Output result with all string method usage
+      let result = `
+        <p><strong>Trimmed Name:</strong> ${trimmed}</p>
+        <p><strong>Lowercased:</strong> ${lowercased}</p>
+        <p><strong>First Name:</strong> ${firstName}</p>
+        <p><strong>Last Name:</strong> ${lastName || "N/A"}</p>
+        <p><strong>Initials:</strong> ${initials.toUpperCase()}</p>
+        <p><strong>Username:</strong> <span style="color:green;">${username}</span></p>
+      `;
+
+      output.innerHTML = result;
+    }
+  </script>
+</body>
+</html>
