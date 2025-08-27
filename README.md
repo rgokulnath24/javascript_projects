@@ -1,18 +1,23 @@
-# 🚀 JavaScript Projects
+# 🌐 Frontend Playground
 
-This repository is a collection of my **JavaScript projects** ranging from beginner-friendly mini apps to more advanced problem-solving exercises. The goal of this repo is to **strengthen core JavaScript concepts** and showcase practical implementations.
+This repository is a collection of my **small frontend projects** ranging from beginner-friendly mini apps to UI experiments. The goal of this repo is to **practice and strengthen my skills in HTML, CSS, Bootstrap, Tailwind, and JavaScript** by building practical, interactive projects.
 
 ---
 
 ## 📌 Features
-- Multiple projects organized in a single repo  
-- Covers **fundamental JavaScript concepts** (arrays, objects, DOM, async, ES6+)  
-- Beginner to advanced level practice  
-- Easy to navigate folder structure  
+- Collection of mini projects in a single repo  
+- Covers **core frontend technologies** (HTML, CSS, JS)  
+- Uses **Bootstrap and Tailwind CSS** for responsive layouts and styling  
+- Beginner to intermediate level practice  
+- Well-organized folder structure for easy navigation  
 
 ---
 
 ## 🛠️ Tech Stack
-- **JavaScript (ES6+)** – core language for all projects  
-- **HTML5** – structure for projects  
-- **CSS3** – styling and UI enhancements  
+- **HTML5** – structure for web pages  
+- **CSS3** – custom styling  
+- **Bootstrap 5** – responsive grid, components, and utilities  
+- **Tailwind CSS** – utility-first styling framework  
+- **JavaScript (ES6+)** – DOM manipulation, array/object methods, interactivity  
+
+---
