@@ -26,7 +26,7 @@ This project includes the following animations:
 
 | Desktop View | 
 |--------------|
-| c:\Users\ACER\Pictures\Screenshots\Screenshot 2025-08-29 152248.png|
+|<img width="400" height="400" alt="Screenshot 2025-08-29 152248" src="https://github.com/user-attachments/assets/2a95ffab-c16f-4161-8813-c201e37f4760" />|
 
 ---
 
