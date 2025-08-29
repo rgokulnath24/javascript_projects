@@ -1,0 +1,179 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f0f0f0;
+  padding: 20px;
+}
+h2 {
+  text-align: center;
+  margin-top: 20px;
+  color: #333;
+}
+.container {
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 20px;
+}
+.box {
+  width: 100px;
+  height: 100px;
+  background: #3498db;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: center;
+  transition: all 0.5s ease;
+}
+
+/* -------------------- Hover Effects -------------------- */
+.hover-scale:hover { transform: scale(1.2); }
+.hover-rotate:hover { transform: rotate(20deg); }
+.hover-skew:hover { transform: skew(20deg,10deg); }
+.flip:hover { transform: rotateY(180deg); }
+.glow { box-shadow: 0 0 5px #3498db; transition: box-shadow all 0.3s linear; }
+.glow:hover { box-shadow: 0 0 20px #3498db; }
+.rotate-scale:hover { transform: rotate(15deg) scale(1.2); }
+
+/* -------------------- Fade Animations -------------------- */
+@keyframes fade-in { 0% {opacity:0;} 100% {opacity:1;} }
+@keyframes fade-out { 0% {opacity:1;} 100% {opacity:0;} }
+.fade-in { animation: fade-in 1s ease forwards; }
+.fade-out:hover { animation: fade-out 1s ease forwards; }
+
+/* -------------------- Slide Animations -------------------- */
+@keyframes slide-in { 0% { transform: translateX(-100px); opacity:0; } 100% { transform: translateX(0); opacity:1; } }
+@keyframes slide-out { 0% { transform: translateX(0); opacity:1; } 100% { transform: translateX(100px); opacity:0; } }
+.slide-in { animation: slide-in 1s ease forwards; }
+.slide-out:hover { animation: slide-out 0.5s ease forwards; }
+
+/* -------------------- Bounce & Shake -------------------- */
+@keyframes bounce { 0%,100%{transform:translateY(0);}50%{transform:translateY(-20px);} }
+.bounce:hover { animation: bounce 0.5s ease; }
+@keyframes shake {0%,100%{transform:translateX(0);}25%{transform:translateX(-5px);}75%{transform:translateX(5px);} }
+.shake:hover { animation: shake 0.5s ease; }
+
+/* -------------------- Spin & Pulse -------------------- */
+@keyframes spin {0%{transform:rotate(0deg);}100%{transform:rotate(360deg);} }
+.spin:hover { animation: spin 1s linear infinite; }
+@keyframes pulse {0%,100%{transform:scale(1);}50%{transform:scale(1.1);} }
+.pulse:hover { animation: pulse 1s ease-in-out infinite; }
+
+/* -------------------- Floating -------------------- */
+@keyframes float {0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);} }
+.float { animation: float 2s ease-in-out infinite; }
+
+/* -------------------- Combo / Advanced -------------------- */
+@keyframes rotate-scale-fade {
+  0% { transform: rotate(0deg) scale(1); opacity:1; }
+  50% { transform: rotate(180deg) scale(1.2); opacity:0.5; }
+  100% { transform: rotate(360deg) scale(1); opacity:1; }
+}
+.rotate-scale-fade:hover { animation: rotate-scale-fade 2s ease-in-out infinite; }
+
+/* -------------------- Background Animations -------------------- */
+@keyframes bg-gradient {
+  0% { background-color: #3498db; }
+  25% { background-color: #e74c3c; }
+  50% { background-color: #f1c40f; }
+  75% { background-color: #2ecc71; }
+  100% { background-color: #3498db; }
+}
+.bg-animate:hover { animation: bg-gradient 3s linear infinite; }
+
+/* -------------------- Text Animations -------------------- */
+@keyframes text-blink {0%,100%{opacity:1;}50%{opacity:0;} }
+.text-blink { animation: text-blink 1s linear infinite; }
+
+/* -------------------- Timing-function Demo -------------------- */
+.ease-demo:hover { transform: translateY(-20px); transition: transform 1s ease; }
+.ease-in-demo:hover { transform: translateY(-20px); transition: transform 1s ease-in; }
+.ease-out-demo:hover { transform: translateY(-20px); transition: transform 1s ease-out; }
+.ease-in-out-demo:hover { transform: translateY(-20px); transition: transform 1s ease-in-out; }
+.linear-demo:hover { transform: translateY(-20px); transition: transform 1s linear; }
+
+/* -------------------- Styling for demo text -------------------- */
+.box-small { width: 80px; height: 80px; font-size:12px; }
+
+.slider,.pulseu
+{
+    width:100px;
+    height: 100px;
+    background-color: #e74c3c;
+    border-radius: 40px;
+}
+.slider:hover
+{
+    animation: slider 0.3s ease forwards;
+    cursor:pointer;
+}
+@keyframes slider{
+0%
+{
+  transform: translateX(0px);
+  opacity:1;
+}
+100%
+{
+  transform: translateX(40px);
+  opacity:0;
+}
+}
+.pulseu
+{
+    width:100px;
+    height: 100px;
+    background-color: #05c522;
+    border-radius: 20px;
+}
+.pulseu:hover
+{
+    animation:pulse_ani 1s ease-in-out infinite;
+}
+@keyframes pulse_ani
+{
+    0%,100%
+    {
+        transform:scale(1);
+    }
+    /* 25%
+    {
+        transform:scale(1.2);
+    } */
+    50%
+    {
+        transform:scale(1.2);
+    }
+    /* 75%
+    {
+        transform:scale(-1.2);
+    } */
+
+}
+/* @keyframes pulse {0%,100%{transform:scale(1);}50%{transform:scale(1.1);} }
+.pulse:hover { animation: pulse 1s ease-in-out infinite; } */
+.blinked
+{
+    width:200px;
+    height:200px;
+    background-color: #f1c40f;
+    border-radius: 30px;
+    margin-top: 30px;
+    animation: blink_kf 1s ease infinite;
+}
+@keyframes blink_kf
+{
+    0%
+    {
+      opacity: 0;
+    }
+    100%
+    {
+      opacity: 1;
+    }
+
+}
